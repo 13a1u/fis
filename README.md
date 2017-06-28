@@ -24,3 +24,19 @@ Aus diesem Grund unter /boot/config.txt den Wert
     enable_uart=1
 setzten.
 ```
+- Smstools installieren
+-- Download mit wget. Danach configure, make, make-install
+- /etc/smsd.conf
+```sh
+devices = GSM1
+...
+loglevel = 5
+incoming_utf8 = yes
+
+[GSM1]
+device = /dev/ttyS0
+init = AT
+incoming = yes
+baudrate = 115200
+```
+- FONA 808 verbinden
