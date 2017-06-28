@@ -40,3 +40,21 @@ incoming = yes
 baudrate = 115200
 ```
 - FONA 808 verbinden
+[Connect FONA to Raspberry Pi](https://learn.adafruit.com/fona-tethering-to-raspberry-pi-or-beaglebone-black/wiring)
+Test ob Modem funktioniert:
+```sh
+screen /dev/ttyS0 115200
+AT --> OK
+AT+COPS? --> +COPS: 0,0,"SWISS GSM" -- nur dann hat sich das Modem mit dem Provider connected
+----SMS senden ----
+AT+CMGF=1
+AT+CMGS="Tel-Nr."
+> SMS Text
+ctrl-z
+```
+Verlassen von screen mittels ctrl+a, K, y **Wichtig da sonst screen die Serielle Schnittstelle nicht frei gibt**
+
+Wenn alles ok, können SMS Tools gestartet werden /etc/init.d/sms3 start
+log --> /var/log/smsd.log
+Loglevel 7: für Details
+SMS Empfangen uns senden via /var/spool/sms/xy [siehe](https://krausens-online.de/sms-via-raspberry-teil-2/)
